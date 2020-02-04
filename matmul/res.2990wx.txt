@@ -1,0 +1,58 @@
+# matmul_basic_fast 5000 5
+# OMP_NUM_THREADS, CalcTime[s]
+1 88.270238
+2 46.669461
+4 25.584798
+8 14.624143
+16 7.785734
+32 4.221461
+
+# matmul_basic_fast 8000 5
+# OMP_NUM_THREADS, CalcTime[s]
+1 375.914878
+2 191.517053
+4 96.922986
+8 49.820767
+16 31.482300
+32 22.662385
+
+# matmul_basic_fast 2000 <mode>
+# OMP_NUM_THREADS, CalcTime[s] mode:3, CalcTime[s] mode:5
+1 28.468202 5.720255
+2 15.467332 2.862499
+4 7.970002 1.759341
+8 4.159131 1.204896
+16 2.722270 0.732751
+32 1.856227 0.764602
+
+# matmul_basic 2000 0
+62.160858
+# matmul_basic_fast 2000 0
+28.403959
+# matmul_basic 2000 1
+45.004444
+# matmul_basic_fast 2000 1
+28.199005
+# matmul_basic 2000 4
+22.225588
+# matmul_basic_fast 2000 4
+5.672883
+
+
+# OMP_NUM_THREADS=8 numactl -a -C 32,36,40,44,48,52,56,60 ./matmul_basic_fast 4000 5
+7.404176
+
+# OMP_NUM_THREADS=8 numactl -a -C 0,4,8,12,16,20,24,28 ./matmul_basic_fast 4000 5
+7.648023
+
+# OMP_NUM_THREADS=16 numactl -a -C 0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30 ./matmul_basic_fast 8000 5
+32.969955
+
+# OMP_NUM_THREADS=16 numactl -a -C 32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62 ./matmul_basic_fast 8000 5
+34.556264
+
+# OMP_NUM_THREADS=16 numactl -a -C 0-15 ./matmul_basic_fast 8000 5
+47.042167
+
+# OMP_NUM_THREADS=16 numactl -a -C 0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30 ./matmul_basic_fast 8000 5
+33.702642
